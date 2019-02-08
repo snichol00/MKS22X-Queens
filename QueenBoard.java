@@ -15,12 +15,10 @@ public class QueenBoard{
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
         if (board[x][y] == -1){
-          removeQueen(x, y);
           return false;
         }
         if (x == r){
           if (board[x][y] == -1 && c != y){
-            removeQueen(x, y);
             return false;
           }
           else{
@@ -29,7 +27,6 @@ public class QueenBoard{
         }
         if (y == c){
           if (board[x][y] == -1 && r != x){
-            removeQueen(x, y);
             return false;
           }
           else{
@@ -38,7 +35,6 @@ public class QueenBoard{
         }
         if (r-c == x-y){
           if (board[x][y] == -1 && r != x && c != y){
-            removeQueen(x, y);
             return false
           }
           else{
@@ -51,7 +47,27 @@ public class QueenBoard{
   }
 
   private boolean removeQueen(int r, int c){
-
+    board[r][c] = 0;
+    for (int y = 0; y < board.length; y++){
+      for (int x = 0; x < board[0].length; x++){
+        if (x == r){
+          if (board[x][y] != -1){
+            board[x][y] --;
+          }
+        }
+        if (y == c){
+          if (board[x][y] != -1){
+            oard[x][y] --;
+          }
+        }
+        if (r-c == x-y){
+          if (board[x][y] != -1){
+            board[x][y] --;
+          }
+        }
+      }
+    }
+    return true;
   }
 
   /**

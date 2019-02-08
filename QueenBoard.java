@@ -52,15 +52,12 @@ public class QueenBoard{
       for (int x = 0; x < board[0].length; x++){
         if (x == r&& board[x][y] != -1){
             board[x][y] --;
-          }
         }
         if (y == c && board[x][y] != -1){
             board[x][y] --;
-          }
         }
         if (r-c == x-y && board[x][y] != -1){
             board[x][y] --;
-          }
         }
       }
     }
@@ -115,8 +112,8 @@ public class QueenBoard{
       }
     }
     else{
-      for (int y = 0; y < size; y++){
-        for (int x = 0; x < size; x++){
+      for (int y = 0; y < board.length; y++){
+        for (int x = 0; x < board[0].length; x++){
           board[y][x] = 0;
       }
     }
@@ -127,9 +124,8 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    for
-    for (int y = 0; y < size; y++){
-      for (int x = 0; x < size; x++){
+    for (int y = 0; y < board.length; y++){
+      for (int x = 0; x < board[0].length; x++){
         board[y][x] = 0;
       }
     }

@@ -16,11 +16,12 @@ public class QueenBoard{
       for (int x = 0; x < size; x++){
         if (board[x][y] == -1){
           removeQueen(x, y);
-          //how would this work?
+          return false;
         }
         if (x == r){
           if (board[x][y] == -1 && c != y){
             removeQueen(x, y);
+            return false;
           }
           else{
             board[x][y] ++;
@@ -29,6 +30,7 @@ public class QueenBoard{
         if (y == c){
           if (board[x][y] == -1 && r != x){
             removeQueen(x, y);
+            return false;
           }
           else{
             board[x][y] ++;
@@ -37,6 +39,7 @@ public class QueenBoard{
         if (r-c == x-y){
           if (board[x][y] == -1 && r != x && c != y){
             removeQueen(x, y);
+            return false
           }
           else{
             board[x][y] ++;
@@ -44,8 +47,9 @@ public class QueenBoard{
         }
       }
     }
+    return true;
   }
-  
+
   private boolean removeQueen(int r, int c){
 
   }
@@ -81,12 +85,25 @@ public class QueenBoard{
   *        true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value
   */
-  public boolean solve(){}
+  public boolean solve(){
+    for (int y = 0; y < size; y++){
+      for (int x = 0; x < size; x++){
+        board[y][x] = 0;
+      }
+    }
+  }
 
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value
   */
-  public int countSolutions(){}
+  public int countSolutions(){
+    for
+    for (int y = 0; y < size; y++){
+      for (int x = 0; x < size; x++){
+        board[y][x] = 0;
+      }
+    }
+  }
 
 }

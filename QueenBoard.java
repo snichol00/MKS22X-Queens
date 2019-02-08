@@ -10,7 +10,20 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r, int c){
-
+    board[r][c] = -1;
+    for (int y = 0; y < size; y++){
+      for (int x = 0; x < size; x++){
+        if (board[x][y] != -1){
+          removeQueen(x, y);
+          //how would this work?
+        }
+        if (x == r && board[x][y] != -1){
+          board[x][y] ++;
+        }
+        if (y == c && board[x][y] != -1){
+          board[x][y] ++;
+        }
+    }
   }
   private boolean removeQueen(int r, int c){
 

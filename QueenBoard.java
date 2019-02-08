@@ -6,6 +6,7 @@ public class QueenBoard{
     for (int y = 0; y < size; y++){
       for (int x = 0; x < size; x++){
         board[y][x] = 0;
+      }
     }
   }
 
@@ -13,18 +14,38 @@ public class QueenBoard{
     board[r][c] = -1;
     for (int y = 0; y < size; y++){
       for (int x = 0; x < size; x++){
-        if (board[x][y] != -1){
+        if (board[x][y] == -1){
           removeQueen(x, y);
           //how would this work?
         }
-        if (x == r && board[x][y] != -1){
-          board[x][y] ++;
+        if (x == r){
+          if (board[x][y] == -1 && c != y){
+            removeQueen(x, y);
+          }
+          else{
+            board[x][y] ++;
+          }
         }
-        if (y == c && board[x][y] != -1){
-          board[x][y] ++;
+        if (y == c){
+          if (board[x][y] == -1 && r != x){
+            removeQueen(x, y);
+          }
+          else{
+            board[x][y] ++;
+          }
         }
+        if (r-c == x-y){
+          if (board[x][y] == -1 && r != x && c != y){
+            removeQueen(x, y);
+          }
+          else{
+            board[x][y] ++;
+          }
+        }
+      }
     }
   }
+  
   private boolean removeQueen(int r, int c){
 
   }

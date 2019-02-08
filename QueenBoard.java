@@ -50,18 +50,15 @@ public class QueenBoard{
     board[r][c] = 0;
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
-        if (x == r){
-          if (board[x][y] != -1){
+        if (x == r&& board[x][y] != -1){
             board[x][y] --;
           }
         }
-        if (y == c){
-          if (board[x][y] != -1){
-            oard[x][y] --;
+        if (y == c && board[x][y] != -1){
+            board[x][y] --;
           }
         }
-        if (r-c == x-y){
-          if (board[x][y] != -1){
+        if (r-c == x-y && board[x][y] != -1){
             board[x][y] --;
           }
         }

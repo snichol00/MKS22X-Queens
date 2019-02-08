@@ -83,16 +83,17 @@ public class QueenBoard{
   *excludes the character up to the *)
   */
   public String toString(){
+    String output = "";
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
         if (board[y][x] = -1){
-          System.out.print("Q ");
+          output += "Q ";
         }
         else{
-          System.out.print("_ ");
+          output += "_ ";
         }
       }
-      System.out.println();
+      output += "\n";
     }
   }
 

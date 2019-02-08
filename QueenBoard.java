@@ -9,8 +9,12 @@ public class QueenBoard{
     }
   }
 
-  private boolean addQueen(int r, int c)
-  private boolean removeQueen(int r, int c)
+  private boolean addQueen(int r, int c){
+
+  }
+  private boolean removeQueen(int r, int c){
+
+  }
 
   /**
   *@return The output string formatted as follows:
@@ -24,7 +28,19 @@ public class QueenBoard{
   *(pythonic string notation for clarity,
   *excludes the character up to the *)
   */
-  public String toString(){}
+  public String toString(){
+    for (int y = 0; y < board.length; y++){
+      for (int x = 0; x < board[0].length; x++){
+        if (board[y][x] = -1){
+          System.out.print("Q ");
+        }
+        else{
+          System.out.print("_ ");
+        }
+      }
+      System.out.println();
+    }
+  }
 
   /**
   *@return false when the board is not solveable and leaves the board filled with zeros;

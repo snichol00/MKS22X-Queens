@@ -99,25 +99,12 @@ public class QueenBoard{
   public boolean solve(){
     for (int y = 0; y < board.length;){
       for (int x = 0; x < board[0].length;){
-        if (board[x][y] == 0){
-          if (addQueen(x, y)){
-            y += 1;
-            x = 0;
-          }
-          else{
-            removeQueen(x, y);
-            x += 1;
-          }
+        if (board[x][y] != 0){
+          throw new IllegalStateException();
         }
       }
     }
-    else{
-      for (int y = 0; y < board.length; y++){
-        for (int x = 0; x < board[0].length; x++){
-          board[y][x] = 0;
-      }
-    }
-  }
+    return solveRow(0);
 }
 
   public boolean solveRow(int col){

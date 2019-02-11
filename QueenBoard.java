@@ -35,7 +35,7 @@ public class QueenBoard{
         }
         if (r-c == x-y){
           if (board[x][y] == -1 && r != x && c != y){
-            return false
+            return false;
           }
           else{
             board[x][y] ++;
@@ -98,7 +98,7 @@ public class QueenBoard{
   */
   public boolean solve(){
     for (int y = 0; y < board.length;){
-      for (int x = 0; x < board[0].length){
+      for (int x = 0; x < board[0].length;){
         if (board[x][y] == 0){
           if (addQueen(x, y)){
             y += 1;
@@ -117,6 +117,22 @@ public class QueenBoard{
           board[y][x] = 0;
       }
     }
+  }
+}
+
+  public boolean solveRow(int col){
+    if (col >= board[0].length){
+      return true;
+    }
+    for (int row = 0; row < board.length; row++){
+      if (addQueen(row, col)){
+        if (solveRow(col + 1)){
+          return true;
+        }
+        removeQueen(row, col);
+      }
+    }
+    return false;
   }
 
   /**

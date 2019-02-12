@@ -107,7 +107,9 @@ public class QueenBoard{
         }
       }
     }
-    return solveRow(0);
+    for (int r = 0; r < board[0].length; r++){
+      return solveRow(r);
+    }
   }
 
   public boolean solveRow(int row){
@@ -137,12 +139,29 @@ public class QueenBoard{
         }
       }
     }
-    for (int y = 0; y < board.length; y++){
-      for (int x = 0; x < board[0].length; x++){
-        board[y][x] = 0;
-      }
+    for (int r = 0; r < board[0].length; r++){
+      return solveRow(r);
     }
-    return 0;
   }
 
+    public int countSolutions(int row){
+      int count = 0;
+      if (row == board[0].length){
+        return 1;
+      }
+      for (int col = 0; col < board[0].length; col++){
+        if (addQueen(row, col)){
+          if (solveRow(row + 1)){
+            return count + countSolutions(row + 1);
+          }
+          removeQueen(row, col);
+        }
+      }
+      for (int y = 0; y < board.length; y++){
+        for (int x = 0; x < board[0].length; x++){
+          board[y][x] = 0;
+        }
+      }
+      return count;
+    }
 }

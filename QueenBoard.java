@@ -30,7 +30,7 @@ public class QueenBoard{
         board[x][y] ++;
       }
     }
-    for (int x = r - 1; x < board[0].length; x--){
+    for (int x = r - 1; x < board[0].length && x >= 0; x--){
       for (int y = c + 1; y < board.length; y++){
         board[x][y] ++;
       }
@@ -58,7 +58,7 @@ public class QueenBoard{
         board[x][y]--;
       }
     }
-    for (int x = r - 1; x < board[0].length; x--){
+    for (int x = r - 1; x < board[0].length && x >= 0; x--){
       for (int y = c + 1; y < board.length; y++){
         board[x][y]--;
       }
@@ -100,23 +100,23 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
-    for (int y = 0; y < board.length;){
-      for (int x = 0; x < board[0].length;){
+    for (int y = 0; y < board.length; y++){
+      for (int x = 0; x < board[0].length; x++){
         if (board[x][y] != 0){
           throw new IllegalStateException();
         }
       }
     }
     return solveRow(0);
-}
+  }
 
-  public boolean solveRow(int col){
-    if (col >= board[0].length){
+  public boolean solveRow(int row){
+    if (row == board[0].length){
       return true;
     }
-    for (int row = 0; row < board.length; row++){
+    for (int col = 0; col < board[0].length; col++){
       if (addQueen(row, col)){
-        if (solveRow(col + 1)){
+        if (solveRow(row + 1)){
           return true;
         }
         removeQueen(row, col);
@@ -130,6 +130,13 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
+    for (int y = 0; y < board.length; y++){
+      for (int x = 0; x < board[0].length; x++){
+        if (board[x][y] != 0){
+          throw new IllegalStateException();
+        }
+      }
+    }
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
         board[y][x] = 0;

@@ -11,54 +11,56 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r, int c){
+    if (board[r][c] != 0){
+      return false;
+    }
     board[r][c] = -1;
     for (int y = 0; y < board.length; y++){
+      if (y != c){
+        board[r][y]++;
+      }
       for (int x = 0; x < board[0].length; x++){
-        if (board[x][y] == -1){
-          return false;
+        if (x != r){
+          board[x][c] ++;
         }
-        if (x == r){
-          if (board[x][y] == -1 && c != y){
-            return false;
-          }
-          else{
-            board[x][y] ++;
-          }
-        }
-        if (y == c){
-          if (board[x][y] == -1 && r != x){
-            return false;
-          }
-          else{
-            board[x][y] ++;
-          }
-        }
-        if (r-c == x-y){
-          if (board[x][y] == -1 && r != x && c != y){
-            return false;
-          }
-          else{
-            board[x][y] ++;
-          }
-        }
+      }
+    }
+    for (int x = r + 1; x < board[0].length; x++){
+      for (int y = c + 1; y < board.length; y++){
+        board[x][y] ++;
+      }
+    }
+    for (int x = r - 1; x < board[0].length; x--){
+      for (int y = c + 1; y < board.length; y++){
+        board[x][y] ++;
       }
     }
     return true;
   }
 
   private boolean removeQueen(int r, int c){
+    if (board[r][c] != -1){
+      return false;
+    }
     board[r][c] = 0;
     for (int y = 0; y < board.length; y++){
+      if (y != c){
+        board[r][y]--;
+      }
       for (int x = 0; x < board[0].length; x++){
-        if (x == r&& board[x][y] != -1){
-            board[x][y] --;
+        if (x != r){
+          board[x][c]--;
         }
-        if (y == c && board[x][y] != -1){
-            board[x][y] --;
-        }
-        if (r-c == x-y && board[x][y] != -1){
-            board[x][y] --;
-        }
+      }
+    }
+    for (int x = r + 1; x < board[0].length; x++){
+      for (int y = c + 1; y < board.length; y++){
+        board[x][y]--;
+      }
+    }
+    for (int x = r - 1; x < board[0].length; x--){
+      for (int y = c + 1; y < board.length; y++){
+        board[x][y]--;
       }
     }
     return true;
@@ -80,7 +82,7 @@ public class QueenBoard{
     String output = "";
     for (int y = 0; y < board.length; y++){
       for (int x = 0; x < board[0].length; x++){
-        if (board[y][x] = -1){
+        if (board[y][x] == -1){
           output += "Q ";
         }
         else{
@@ -89,6 +91,7 @@ public class QueenBoard{
       }
       output += "\n";
     }
+    return output;
   }
 
   /**
@@ -132,6 +135,7 @@ public class QueenBoard{
         board[y][x] = 0;
       }
     }
+    return 0;
   }
 
 }

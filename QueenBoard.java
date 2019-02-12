@@ -10,7 +10,7 @@ public class QueenBoard{
     }
   }
 
-  private boolean addQueen(int r, int c){
+  public boolean addQueen(int r, int c){
     if (board[r][c] != 0){
       return false;
     }
@@ -19,21 +19,31 @@ public class QueenBoard{
       if (y != c){
         board[r][y]++;
       }
-      for (int x = 0; x < board[0].length; x++){
-        if (x != r){
-          board[x][c] ++;
-        }
+    }
+    for (int x = 0; x < board[0].length; x++){
+      if (x != r){
+        board[x][c] ++;
       }
     }
-    for (int x = r + 1; x < board[0].length; x++){
-      for (int y = c + 1; y < board.length; y++){
-        board[x][y] ++;
-      }
+    int x1 = r + 1;
+    for (int y = c + 1; y < board.length && x1 < board.length; y++){
+      board[x1][y] ++;
+      x1++;
     }
-    for (int x = r - 1; x < board[0].length && x >= 0; x--){
-      for (int y = c + 1; y < board.length; y++){
-        board[x][y] ++;
-      }
+    int x2 = r - 1;
+    for (int y = c + 1; y < board.length && x2 >= 0; y++){
+      board[x2][y] ++;
+      x2--;
+    }
+    int x3 = r + 1;
+    for (int y = c - 1; y >= 0 && x3 < board.length; y--){
+      board[x3][y] ++;
+      x3++;
+    }
+    int x4 = r - 1;
+    for (int y = c - 1; y >= 0 && x4 >= 0; y--){
+      board[x4][y] ++;
+      x4--;
     }
     return true;
   }
@@ -47,21 +57,31 @@ public class QueenBoard{
       if (y != c){
         board[r][y]--;
       }
-      for (int x = 0; x < board[0].length; x++){
-        if (x != r){
-          board[x][c]--;
-        }
+    }
+    for (int x = 0; x < board[0].length; x++){
+      if (x != r){
+        board[x][c] --;
       }
     }
-    for (int x = r + 1; x < board[0].length; x++){
-      for (int y = c + 1; y < board.length; y++){
-        board[x][y]--;
-      }
+    int x1 = r + 1;
+    for (int y = c + 1; y < board.length && x1 < board.length; y++){
+      board[x1][y] --;
+      x1++;
     }
-    for (int x = r - 1; x < board[0].length && x >= 0; x--){
-      for (int y = c + 1; y < board.length; y++){
-        board[x][y]--;
-      }
+    int x2 = r - 1;
+    for (int y = c + 1; y < board.length && x2 >= 0; y++){
+      board[x2][y] --;
+      x2--;
+    }
+    int x3 = r + 1;
+    for (int y = c - 1; y >= 0 && x3 < board.length; y--){
+      board[x3][y] --;
+      x3++;
+    }
+    int x4 = r - 1;
+    for (int y = c - 1; y >= 0 && x4 >= 0; y--){
+      board[x4][y] --;
+      x4--;
     }
     return true;
   }
@@ -86,7 +106,7 @@ public class QueenBoard{
           output += "Q ";
         }
         else{
-          output += "_ ";
+          output += board[y][x] + " ";
         }
       }
       output += "\n";
@@ -107,9 +127,7 @@ public class QueenBoard{
         }
       }
     }
-    for (int r = 0; r < board[0].length; r++){
-      return solveRow(r);
-    }
+    return solveRow(0);
   }
 
   public boolean solveRow(int row){
@@ -139,23 +157,19 @@ public class QueenBoard{
         }
       }
     }
-    for (int r = 0; r < board[0].length; r++){
-      return solveRow(r);
-    }
+    return countSolutions(0);
   }
 
     public int countSolutions(int row){
       int count = 0;
-      if (row == board[0].length){
+      if (row >= board[0].length){
         return 1;
       }
       for (int col = 0; col < board[0].length; col++){
         if (addQueen(row, col)){
-          if (solveRow(row + 1)){
-            return count + countSolutions(row + 1);
-          }
-          removeQueen(row, col);
+          count += countSolutions(row + 1);
         }
+        removeQueen(row, col);
       }
       for (int y = 0; y < board.length; y++){
         for (int x = 0; x < board[0].length; x++){

@@ -10,7 +10,7 @@ public class QueenBoard{
     }
   }
 
-  public boolean addQueen(int r, int c){
+  private boolean addQueen(int r, int c){
     if (board[r][c] != 0){
       return false;
     }
@@ -106,7 +106,7 @@ public class QueenBoard{
           output += "Q ";
         }
         else{
-          output += board[y][x] + " ";
+          output += "_ ";
         }
       }
       output += "\n";
@@ -162,20 +162,16 @@ public class QueenBoard{
 
     public int countSolutions(int row){
       int count = 0;
-      if (row >= board[0].length){
+      if (row == board.length){
         return 1;
       }
-      for (int col = 0; col < board[0].length; col++){
+      for (int col = 0; col < board.length; col++){
         if (addQueen(row, col)){
           count += countSolutions(row + 1);
         }
         removeQueen(row, col);
       }
-      for (int y = 0; y < board.length; y++){
-        for (int x = 0; x < board[0].length; x++){
-          board[y][x] = 0;
-        }
-      }
       return count;
     }
+
 }
